@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+  <script 
+    type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+  <body style="margin: 0; background: black">
+    <div id="app"></div>
+  </body>
+
+  <script>
+
+    const jsMatrixI2MathJax = (matrixData) => {
+      let matrixMarkup = "\\[ \\begin{bmatrix}";
+      for (let row of matrixData) {
+        matrixMarkup += row.join(" & ") + " \\\\ ";
+      }
+      matrixMarkup += "\\end{bmatrix} \\]";
+      return matrixMarkup
+    }
+
+    // python numpy adapter :D
+    const np = {
+      array: (a) => a
+    }
+
+    // TODO: download all videos into local PC
+    const links = [
+      { 
+        title: 'Word embeddings 2d' ,
+        link: 'https://user-images.githubusercontent.com/16742389/237285275-f06faede-cf71-41e8-84e2-11dcd45e9d06.png',
+      }, 
+      { 
+        title: 'Word embeddings 3d' ,
+        link: 'https://user-images.githubusercontent.com/16742389/237284573-39673f4a-3a2f-45e2-8bd5-0906e3e9ea21.mp4', 
+        loop: true
+      }, 
+      {
+        title: 'Word2vec training',
+        link: 'https://user-images.githubusercontent.com/16742389/237580406-f2f15a7c-4d68-45ac-8eca-a95b70a86d89.mp4',
+        weights: {
+          "embed_2d_1": np.array([
+              [-1.0,  0.5],
+              [ 0.8,  0.5],
+              [ 1.0, -0.9]
+          ]),
+          "embed_2d_bias_1": np.array([[-0.8, 1]]),
+          "sigmoid": "noop",
+          "linear_1": np.array([
+            [ 0.6, 0.8, 4],
+            [-0.2, 1.1, 2],
+          ]),
+          "bias_1": np.array([[4, -0.5, -3.5]]),
+          "softmax": "noop"
+        }
+      }, 
+      {
+        title: "Word2Vec output as a simple lookup table.",
+        link: "https://user-images.githubusercontent.com/16742389/237686722-e8889f4f-e183-45b8-93b7-cc2c8c8bd7b3.mp4",
+        weights: {
+          "embed_2d_1": np.array([
+              [-1.0,  0.5],
+              [ 0.8,  0.5],
+              [ 1.0, -0.9]
+          ]),
+        }
+      },
+      {
+        title: 'Visual word vectors in the latent space',
+        link: 'https://user-images.githubusercontent.com/16742389/237581476-64a7a8cc-e859-410a-82eb-cb725593507b.mp4',
+      }, 
+      {
+        title: 'Vector arithmetic',
+        link: 'https://user-images.githubusercontent.com/16742389/237368646-f35d24a1-195b-416f-8762-b36fac40aebf.mp4',
+      }, 
+      {
+        title: 'Fine-tuning for usefulness classification',
+        link: 'https://user-images.githubusercontent.com/16742389/237377145-d2e0251f-c17b-4838-9c57-b45d933046f7.mp4',
+        weights: {
+          "embeds": [
+              [-0.9,   1.3],
+              [ 0.5, -0.63]
+          ],
+          "linear_1": [
+              [0.8, 0.2],
+              [0, 0.9]
+          ],
+          "bias_1": [[0.5, -0.5]],
+          // "activation_1": None,
+          "linear_2": [
+              [0.5, 1], 
+          ],
+          "bias_2": [[-0.1]],
+        }
+      }, 
+      {
+        title: 'BERT embeddings for capturing contextual meaning',
+        link: 'https://user-images.githubusercontent.com/16742389/237388776-aa7060e0-85ea-4db4-b0c3-2d6fe848d39b.mp4',
+      }, 
+      {
+        title: 'BERT embeddings for contextual and positional embeddings',
+        link: 'https://user-images.githubusercontent.com/16742389/237688309-76a82126-977d-4bbe-b8db-1f3b6b09a487.mp4',
+      }, 
+      {
+        title: 'BERT embeddings for sentence embeddings',
+        link: 'https://user-images.githubusercontent.com/16742389/237688164-93d88c4e-c464-4fc1-9bed-d06da0c17881.mp4',
+      }, 
+      // GPT
+      {
+        title: 'Inferring next word predictions in LLM',
+        link: 'https://user-images.githubusercontent.com/16742389/237691750-50fc945b-62c1-4380-8128-d78c3b55eb00.mp4',
+        weights: {
+          // keep the transformation 2D
+          "linear_1": np.array([
+            [ 1.1, -0.8],
+            [-0.3, -0.1],
+          ]),
+          "bias_1": np.array([[0.1, 1.5]]),
+          "linear_2": np.array([
+            [-0.1, 1.8, 4],
+            [ 0.3, 2.1, 0.5],
+            [ 0.2, 1.8, 2],
+          ]),
+          "bias_2": np.array([[0.1, -0.1, 0.5]]),
+          // "softmax": "noop"
+        }  
+      },
+      {
+        title: 'Temperature-based next word selection (Naive Bayes theorem probability-based selection)',
+        link: "https://user-images.githubusercontent.com/16742389/237707277-cf535419-c517-4d34-a39e-bbcf970e4319.mp4"
+      }, 
+    ]
+
+    const html = links.map(({ title, link, ...a }) => {
+      const isImg = link.endsWith('.png')
+      return`
+        <div style="margin-bottom: 50rem">
+          <h1 style="color: white; text-align: center">${title}</h1>
+
+          <div style="display: flex">
+
+            <div style="object-fit: cover; width: 100%; max-height: 100vh; display: flex; align-items: center; flex-direction: column; ">
+              ${isImg
+                ? `<img height="100%" width="100%" src="${link}">`
+                : `
+                  <video height="100%" width="100%" controls ${a.loop ? 'loop ' : ''}>
+                    <source src="${link}" type="video/mp4">
+                  </video>
+                `
+              }
+            </div>
+
+            <div style="display: flex; flex-direction: column; margin: 1rem; justify-content: center">
+              ${
+                Object.entries(a.weights ?? {})
+                  .map(([k, v]) => `
+                      <div>
+                        <h4 style="color: white; text-align: center">${k}</h4>
+
+                        ${Array.isArray(v) 
+                          ? `<div style="color: white; font-size: 4rem">
+                              ${jsMatrixI2MathJax(v)}
+                            </div>`
+                          : ''
+                        }
+                      </div>
+                    ` )
+                    .join('\n')
+                }
+            </div>
+
+          </div>
+        </div>
+      `})
+      .join('\n')
+
+    document.getElementById("app").innerHTML = `
+      <div style="display: flex; flex-direction: column; ">
+        ${html}
+      </div>
+    `
+
+    MathJax.typesetPromise();
+  </script>
+</html>
