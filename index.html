@@ -1,7 +1,18 @@
 
+<!-- 
+TODO: should I have more .html files for multiple chapters?
+
+0. tokenizer
+1. embeddings
+2. Fine tuning
+3. GPT
+
+-->
+
 <!DOCTYPE html>
 <html>
 <head>
+  <title>ChatGPT internals for coders</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
   <script 
@@ -42,6 +53,7 @@
         loop: true
       }, 
       {
+        // TODO: what about to add 2D NumberPlane() into 3D space?
         title: 'Word2vec training',
         link: 'https://user-images.githubusercontent.com/16742389/237580406-f2f15a7c-4d68-45ac-8eca-a95b70a86d89.mp4',
         weights: {
@@ -79,6 +91,20 @@
         title: 'Vector arithmetic',
         link: 'https://user-images.githubusercontent.com/16742389/237368646-f35d24a1-195b-416f-8762-b36fac40aebf.mp4',
       }, 
+
+      {
+        title: 'BERT embeddings for capturing contextual meaning',
+        link: 'https://user-images.githubusercontent.com/16742389/237388776-aa7060e0-85ea-4db4-b0c3-2d6fe848d39b.mp4',
+      }, 
+      {
+        title: 'BERT embeddings for contextual and positional embeddings',
+        link: 'https://user-images.githubusercontent.com/16742389/237688309-76a82126-977d-4bbe-b8db-1f3b6b09a487.mp4',
+      }, 
+      {
+        title: 'BERT embeddings for sentence embeddings',
+        link: 'https://user-images.githubusercontent.com/16742389/237688164-93d88c4e-c464-4fc1-9bed-d06da0c17881.mp4',
+      }, 
+      // fine tuning
       {
         title: 'Fine-tuning for usefulness classification',
         link: 'https://user-images.githubusercontent.com/16742389/237377145-d2e0251f-c17b-4838-9c57-b45d933046f7.mp4',
@@ -100,17 +126,26 @@
         }
       }, 
       {
-        title: 'BERT embeddings for capturing contextual meaning',
-        link: 'https://user-images.githubusercontent.com/16742389/237388776-aa7060e0-85ea-4db4-b0c3-2d6fe848d39b.mp4',
-      }, 
-      {
-        title: 'BERT embeddings for contextual and positional embeddings',
-        link: 'https://user-images.githubusercontent.com/16742389/237688309-76a82126-977d-4bbe-b8db-1f3b6b09a487.mp4',
-      }, 
-      {
-        title: 'BERT embeddings for sentence embeddings',
-        link: 'https://user-images.githubusercontent.com/16742389/237688164-93d88c4e-c464-4fc1-9bed-d06da0c17881.mp4',
-      }, 
+        title: 'Fine-tuning for toxicity',
+        link: 'https://user-images.githubusercontent.com/16742389/237737083-974fa9f1-7855-4ddd-b0ac-304af6ea0952.mp4',
+        weights: {
+          "embeds": [
+              [-1, 1], 
+              [1, 1] 
+          ],
+          "linear_1": [
+              [0.8, 0.2],
+              [0, 0.9]
+          ],
+          "bias_1": [[0.5, -0.5]],
+          "leaky_relu_1": '',
+          "linear_2": [
+              [0.5, -0.5], 
+              [0, 0],
+          ],
+        }
+      },
+
       // GPT
       {
         title: 'Inferring next word predictions in LLM',
