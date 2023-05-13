@@ -21,20 +21,23 @@ TODO: should I have more .html files for multiple chapters?
   </script>
 </head>
 
-  <body style="margin: 0; background: black">
-    <div id="app"></div>
-  </body>
+<body style="margin: 0; background: black">
+  <div id="app"></div>
+</body>
 
-  <script>
-
+<script>
     const jsMatrixI2MathJax = (matrixData) => {
+      // support 1D matrixes
+      const matrix = matrixData[0]?.[0] ? matrixData : [matrixData] 
+
       let matrixMarkup = "\\[ \\begin{bmatrix}";
-      for (let row of matrixData) {
+      for (let row of matrix) {
         matrixMarkup += row.join(" & ") + " \\\\ ";
       }
       matrixMarkup += "\\end{bmatrix} \\]";
       return matrixMarkup
     }
+    console.log(jsMatrixI2MathJax([1]))
 
     // python numpy adapter :D
     const np = {
@@ -43,6 +46,30 @@ TODO: should I have more .html files for multiple chapters?
 
     // TODO: download all videos into local PC
     const links = [
+      // math basics
+      { 
+        title: 'Math basics - linear transformation',
+        link: 'https://user-images.githubusercontent.com/16742389/238119328-1b42f9ce-1a0d-4606-afec-005c6c1eeb20.mp4',
+        weights: {
+          'linear': [
+            [2, 3],
+            [0, 1]
+          ]
+        }
+      }, 
+      { 
+        title: 'Math basics - adding vectors' ,
+        link: 'https://user-images.githubusercontent.com/16742389/238117371-baa3c028-ae4a-465d-8c19-abe7de005b6b.mp4',
+        weights: {'bias': [1, 2]}
+      }, 
+      { 
+        title: 'Math basics - non linear transformation' ,
+        link: 'https://user-images.githubusercontent.com/16742389/238117368-184b8ca7-4f5a-483f-8776-109f1cfc53fa.mp4',
+        // rawMathJax: `\\f(x) = \frac{4}{{1 + e^{-x}}} `
+        rawMathJax:'\\( f(x) = \\frac{\\frac{1}{4}}{{1 + e^{-x}}} \\)'
+      },
+      // NLP
+
       { 
         title: 'Word embeddings 2d' ,
         link: 'https://user-images.githubusercontent.com/16742389/237285275-f06faede-cf71-41e8-84e2-11dcd45e9d06.png',
@@ -62,13 +89,13 @@ TODO: should I have more .html files for multiple chapters?
               [ 0.8,  0.5],
               [ 1.0, -0.9]
           ]),
-          "embed_2d_bias_1": np.array([[-0.8, 1]]),
+          "embed_2d_bias_1": np.array([-0.8, 1]),
           "sigmoid": "noop",
           "linear_1": np.array([
             [ 0.6, 0.8, 4],
             [-0.2, 1.1, 2],
           ]),
-          "bias_1": np.array([[4, -0.5, -3.5]]),
+          "bias_1": np.array([4, -0.5, -3.5]),
           "softmax": "noop"
         }
       }, 
@@ -117,7 +144,7 @@ TODO: should I have more .html files for multiple chapters?
               [0.8, 0.2],
               [0, 0.9]
           ],
-          "bias_1": [[0.5, -0.5]],
+          "bias_1": [0.5, -0.5],
           // "activation_1": None,
           "linear_2": [
               [0.5, 1], 
@@ -137,7 +164,7 @@ TODO: should I have more .html files for multiple chapters?
               [0.8, 0.2],
               [0, 0.9]
           ],
-          "bias_1": [[0.5, -0.5]],
+          "bias_1": [0.5, -0.5],
           "leaky_relu_1": '',
           "linear_2": [
               [0.5, -0.5], 
@@ -156,13 +183,13 @@ TODO: should I have more .html files for multiple chapters?
             [ 1.1, -0.8],
             [-0.3, -0.1],
           ]),
-          "bias_1": np.array([[0.1, 1.5]]),
+          "bias_1": np.array([0.1, 1.5]),
           "linear_2": np.array([
             [-0.1, 1.8, 4],
             [ 0.3, 2.1, 0.5],
             [ 0.2, 1.8, 2],
           ]),
-          "bias_2": np.array([[0.1, -0.1, 0.5]]),
+          "bias_2": np.array([0.1, -0.1, 0.5]),
           // "softmax": "noop"
         }  
       },
@@ -172,26 +199,31 @@ TODO: should I have more .html files for multiple chapters?
       }, 
     ]
 
-    const html = links.map(({ title, link, ...a }) => {
-      const isImg = link.endsWith('.png')
+    const html = links.map((a) => {
+      const isImg = a.link.endsWith('.png')
       return`
         <div style="margin-bottom: 50rem">
-          <h1 style="color: white; text-align: center">${title}</h1>
+          <h1 style="color: white; text-align: center">${a.title}</h1>
 
           <div style="display: flex">
 
             <div style="object-fit: cover; width: 100%; max-height: 100vh; display: flex; align-items: center; flex-direction: column; ">
               ${isImg
-                ? `<img height="100%" width="100%" src="${link}">`
+                ? `<img height="100%" width="100%" src="${a.link}">`
                 : `
                   <video height="100%" width="100%" controls ${a.loop ? 'loop ' : ''}>
-                    <source src="${link}" type="video/mp4">
+                    <source src="${a.link}" type="video/mp4">
                   </video>
                 `
               }
             </div>
 
             <div style="display: flex; flex-direction: column; margin: 1rem; justify-content: center">
+
+              ${a.rawMathJax
+                ? `<div style="color: white; font-size: 4rem">${a.rawMathJax}</div>`
+                : ''
+              }
               ${
                 Object.entries(a.weights ?? {})
                   .map(([k, v]) => `
