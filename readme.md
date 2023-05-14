@@ -1,3 +1,3 @@
-# chat_gpt_internals_for_nerd_coders
+# chat gpt internals for nerd coders
 
-Backup prezentace, která se snaží pomocí animací přiblížit matematiku za velkými jazykovými modely, na kterých běží ChatGPT.
+Backup presentation that aims to illustrate the mathematics behind large language models, such as the one powering ChatGPT, through animations.
