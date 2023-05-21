@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>ChatGPT internals for coders</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link 
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+    crossorigin="anonymous"
+  >
 
   <script 
     type="text/javascript"
@@ -21,7 +27,7 @@
   <div style="height: 100vh; margin-bottom: 50rem; display: flex">
     <div style="margin: auto">
       <h1 style="font-size: 5rem">ChatGPT internals for coders</h1>
-      <h2>Jakub Švehla</h2>
+      <h2>COCOT eam</h2>
       <div>
         <a href="./chat_gpt_internals_for_nerd_coders.pdf" target="_blank">presentation</a>
       </div>
@@ -30,11 +36,11 @@
   
   <div style="height: 100vh; margin-bottom: 50rem">
     <h1 style="text-align: center">2D game of life</h1>
-    <img src="https://sebastianrisi.com/wp-content/uploads/Gospers_glider_gun.gif" style="width: 100%"/>
+    <img src="./assets/game_of_life_1.gif" style="width: 100%"/>
   </div>
 
   <div style="height: 100vh; margin-bottom: 50rem">
-    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDdmM2E4NTI0YjU1NGFlMThmMTcyNWI5NTdhZTc5YzYwNTY4ODQxNCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/eKVQGBN9NTV2vNpqZA/giphy.gif" style="width: 100%"/>
+    <img src="./assets/game_of_life_2.gif" style="width: 100%"/>
   </div>
 
   <div style="height: 100vh; margin-bottom: 50rem">
@@ -46,12 +52,12 @@
 
   <div style="height: 100vh; margin-bottom: 50rem">
     <h1 style="text-align: center">Reinforcement learning with human feedback</h1>
-    <img src="https://miro.medium.com/v2/resize:fit:640/1*afFVx1Orjc-Y4vRzU7FMMg.gif" style="width: 100%"/>
+    <img src="./assets/reinforcement_learning_1.gif" style="width: 100%"/>
   </div>
 
   <div style="height: 100vh; margin-bottom: 50rem">
     <h1 style="text-align: center">Video generation with diffusion models</h1>
-    <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWVhYzk5OWMwMjNmZWU5Nzg4YzEwNDJiOTgwOTNlODFmNDU1OTAzNSZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/v1EldYrBGwKUYe6Fi2/giphy.gif" style="width: 100%"/>
+    <img src="./assets/video_diffusion_1.gif" style="width: 100%"/>
   </div>
 
 
@@ -91,11 +97,11 @@
       // one hot encoddings
       { 
         title: 'Word embeddings 2d' ,
-        link: 'https://user-images.githubusercontent.com/16742389/237285275-f06faede-cf71-41e8-84e2-11dcd45e9d06.png',
+        link: './assets/word_embeddings_2d.png',
       }, 
       { 
         title: 'Word embeddings 3d' ,
-        link: 'https://user-images.githubusercontent.com/16742389/237284573-39673f4a-3a2f-45e2-8bd5-0906e3e9ea21.mp4', 
+        link: './assets/word_embeddings_3d.mp4',
         loop: true
       }, 
 
@@ -103,11 +109,11 @@
       // Math basics
       { 
         title: 'Math basics - vector + vector space',
-        link: 'https://user-images.githubusercontent.com/16742389/238119917-aa4960d5-8fcf-40b1-92c5-269d2ce2c309.png',
+        link: './assets/math_basics_vector.png',
       }, 
       { 
         title: 'Math basics - linear transformation',
-        link: 'https://user-images.githubusercontent.com/16742389/238119328-1b42f9ce-1a0d-4606-afec-005c6c1eeb20.mp4',
+        link: './assets/math_basics_linear_transform.mp4',
         weights: {
           'linear': [
             [2, 3],
@@ -117,14 +123,14 @@
       }, 
       { 
         title: 'Math basics - adding vectors (special case for linear transformation)' ,
-        link: 'https://user-images.githubusercontent.com/16742389/238117371-baa3c028-ae4a-465d-8c19-abe7de005b6b.mp4',
+        link: './assets/math_basics_vec_adding.mp4',
         weights: {
           'bias': [1, 2]
         }
       }, 
       { 
         title: 'Math basics - non linear transformation' ,
-        link: 'https://user-images.githubusercontent.com/16742389/238117368-184b8ca7-4f5a-483f-8776-109f1cfc53fa.mp4',
+        link: './assets/math_basics_non_linear_transform.mp4',
         weights: {
           sigmoid: mathJaxEquations.sigmoid
         }
@@ -133,18 +139,18 @@
       // embeddings
       {
         title: 'Visual word vectors in the latent space',
-        link: 'https://user-images.githubusercontent.com/16742389/237581476-64a7a8cc-e859-410a-82eb-cb725593507b.mp4',
+        link: './assets/word_vec_latent_space.mp4',
       }, 
 
       {
         title: 'Vector arithmetic',
-        link: 'https://user-images.githubusercontent.com/16742389/237368646-f35d24a1-195b-416f-8762-b36fac40aebf.mp4',
+        link: './assets/word_vec_arithmetics.mp4',
       }, 
 
       {
         // TODO: what about to add 2D NumberPlane() into 3D space?
         title: 'Word2vec training',
-        link: 'https://user-images.githubusercontent.com/16742389/237580406-f2f15a7c-4d68-45ac-8eca-a95b70a86d89.mp4',
+        link: './assets/word_vec_word2vec_training.mp4',
         weights: {
           "embed_2d_1": np.array([
               [-1.0,  0.5],
@@ -163,7 +169,7 @@
       }, 
       {
         title: "Word2Vec output as a simple lookup table.",
-        link: "https://user-images.githubusercontent.com/16742389/237686722-e8889f4f-e183-45b8-93b7-cc2c8c8bd7b3.mp4",
+        link: "./assets/word_vec_lookup_table.mp4",
         weights: {
           "embed_2d_1": np.array([
               [-1.0,  0.5],
@@ -176,26 +182,21 @@
 
       {
         title: 'BERT embeddings for capturing contextual meaning',
-        link: 'https://user-images.githubusercontent.com/16742389/237388776-aa7060e0-85ea-4db4-b0c3-2d6fe848d39b.mp4',
+        link: './assets/bert_context.mp4',
       }, 
       {
         title: 'BERT embeddings for contextual and positional embeddings',
-        link: 'https://user-images.githubusercontent.com/16742389/237688309-76a82126-977d-4bbe-b8db-1f3b6b09a487.mp4',
+        link: './assets/bert_positional_encodding.mp4',
       }, 
       {
         title: 'BERT embeddings for sentence embeddings',
-        link: 'https://user-images.githubusercontent.com/16742389/237688164-93d88c4e-c464-4fc1-9bed-d06da0c17881.mp4',
+        link: './assets/bert_sentence_embeddings.mp4',
       }, 
       // fine tuning
       {
         title: 'Fine-tuning for usefulness classification',
-        link: 'https://user-images.githubusercontent.com/16742389/237377145-d2e0251f-c17b-4838-9c57-b45d933046f7.mp4',
+        link: './assets/fine_tuning_usefulness.mp4',
         weights: {
-          // embeds are already in the animation
-          // "embeds": [
-          //     [-0.9,   1.3],
-          //     [ 0.5, -0.63]
-          // ],
           "linear_1": [
               [0.8, 0.2],
               [0, 0.9]
@@ -210,7 +211,7 @@
       }, 
       {
         title: 'Fine-tuning for toxicity',
-        link: 'https://user-images.githubusercontent.com/16742389/237737083-974fa9f1-7855-4ddd-b0ac-304af6ea0952.mp4',
+        link: './assets/fine_tuning_toxicity.mp4',
         weights: {
           "embeds": [
               [-1, 1], 
@@ -232,7 +233,7 @@
       // GPT
       {
         title: 'Inferring next word predictions in LLM',
-        link: 'https://user-images.githubusercontent.com/16742389/237691750-50fc945b-62c1-4380-8128-d78c3b55eb00.mp4',
+        link: './assets/next_word_pred_llm.mp4',
         weights: {
           // keep the transformation 2D
           "linear_1": np.array([
@@ -252,7 +253,7 @@
       },
       {
         title: 'Temperature-based next word selection (Naive Bayes theorem probability-based selection)',
-        link: "https://user-images.githubusercontent.com/16742389/237707277-cf535419-c517-4d34-a39e-bbcf970e4319.mp4"
+        link: './assets/next_word_pred_naive_bayes.mp4'
       }, 
     ]
 
